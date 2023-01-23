@@ -1,19 +1,15 @@
 import memesData from "../src/memesData"
+import { useState } from 'react'
 
 export default function Meme() {
-      /**
-     * Challenge: Get a random image from the `memesData` array
-     * when the "new meme image" button is clicked.
-     * 
-     * Log the URL of the image to the console. (Don't worry
-     * about displaying the image yet)
-     */
+
+  const [memeImage, setMeme] = useState("")
 
   function getRandomMeme() {
     const memesArr = memesData.data.memes
     const randomNumber = Math.floor(Math.random() * memesArr.length)
-    const url = memesArr[randomNumber].url
-    console.log(url)
+    setMeme(memesArr[randomNumber].url)
+ 
   }
 
 
@@ -23,7 +19,7 @@ export default function Meme() {
         <input className="form--input" type="text" placeholder="Top Text"/>
         <input className="form--input" type="text" placeholder="Bottom Text"/>
         <button onClick={getRandomMeme} className="form--button">Get a new meme image 🏞️</button>
-        {/* <img src={url} className="form--image" /> */}
+        <img src={memeImage} className="form--image" />
       </div>
     </main>
   )
